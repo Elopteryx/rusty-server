@@ -1,4 +1,4 @@
-name: Yas Shop CI
+name: Rusty Server CI
 
 on: [push]
 
