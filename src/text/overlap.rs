@@ -1,8 +1,3 @@
-extern crate core;
-
-use std::fs::File;
-use std::io::{BufReader, BufRead};
-
 enum OverLapOrder {
     FirstToSecond,
     SecondToFirst,
@@ -76,7 +71,7 @@ fn remove_maximum_overlap(fragments: &mut Vec<String>) {
     fragments.insert(first_idx, merge_result);
 }
 
-fn reassemble(line: &String) -> String {
+pub fn reassemble(line: &String) -> String {
     let mut fragments: Vec<String> = line.split(';')
         .map(|fragment| String::from(fragment))
         .collect();
@@ -84,12 +79,4 @@ fn reassemble(line: &String) -> String {
         remove_maximum_overlap(&mut fragments);
     }
     fragments.remove(0)
-}
-
-fn main() {
-    let f = File::open("D:/Downloads/rust projects/practice/src/input.txt").unwrap();
-    BufReader::new(&f).lines()
-        .map(|line| line.unwrap())
-        .map(|line| reassemble(&line))
-        .for_each(|line| println!("{}", line));
 }
